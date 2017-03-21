@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lesson1_ConsoleApp1
 {
@@ -10,26 +6,43 @@ namespace lesson1_ConsoleApp1
     {
         static void Main(string[] args)
         {
-            int[] numbers = new int[3];
-            
-            // Получаем от пользователя 3 числа (сюда еще добавить проверку на ввод "левых" значений!!!)
-            for (int i = 0; i < 3; i++)
+            try
             {
-                Console.WriteLine("Введите число №" + (i+1));
-                numbers[i] = Int32.Parse(Console.ReadLine());
-            }
+                int[] numbers = new int[3]; // массив для хранения введенных пользователем чисел
+                int number;
 
-            // Определяем наименьшее из 3-ёх введенных чисел и выводим его в консоль
-            int min = Min(numbers);
-            Console.WriteLine("Наименьшее число: " + min);
-            
-            Console.WriteLine("Последовательности Фиббоначчи:");
-            // Выводим последовательности Фиббоначчи, последний элемент каждой из которых меньше соответствующего из 3-ёх чисел (3 последовательности)
-            // 0 1 1 2 3 5 8 13 - пример для числа "14"
-            for (int i = 0; i < numbers.Length; i++)
+                Console.WriteLine("Введите 3 целых числа, которые больше нуля!");
+                
+                // Получаем от пользователя 3 числа
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.WriteLine("Введите число №" + (i + 1));
+                    if ((number = Int32.Parse(Console.ReadLine())) > 0)
+                    {
+                        numbers[i] = number; // если число верное, то добавляем его в массив
+                    } else
+                    {
+                        throw new Exception("Вводимые числа должны быть больше нуля!");
+                    }
+                }
+
+                // Определяем наименьшее из 3-ёх введенных чисел и выводим его в консоль
+                int min = Min(numbers);
+                Console.WriteLine("Наименьшее число: " + min);
+
+                Console.WriteLine("Последовательности Фиббоначчи:");
+
+                // Выводим последовательности Фиббоначчи, последний элемент каждой из которых меньше соответствующего из 3-ёх чисел (3 последовательности)
+                // 0 1 1 2 3 5 8 13 - пример для числа "14"
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    FibbSequence(numbers[i]);
+                    Console.WriteLine();
+                }
+
+            } catch (Exception ex)
             {
-                FibbSequence(numbers[i]);
-                Console.WriteLine();
+                Console.WriteLine(ex.Message + " По ходу кто-то не умеет читать...");
             }
 
             Console.ReadLine();
@@ -60,7 +73,7 @@ namespace lesson1_ConsoleApp1
 
             while ((tekElem = Fibb(i)) < n) // while (Fibb(i) < n)
             {
-                Console.Write(tekElem); // Console.Write(Fibb(i));
+                Console.Write(tekElem + " "); // Console.Write(Fibb(i));
                 i++;
             }
         }
