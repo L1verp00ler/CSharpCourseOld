@@ -8,7 +8,6 @@ namespace HomeWork2
         {
             uint number;
 
-            //
             if (!TryEnterNumberFromConsole(out number))
             {
                 Console.Read();
@@ -19,10 +18,8 @@ namespace HomeWork2
                 Console.Read();
                 return;
             }
-            //
 
             int[] unsortedNumbersArray = GenerateNumbersArrayOfSize(number);
-            //int[] unsortedNumbersArray = { 9, 7, 5, 4, 2, 1 };
 
             Console.WriteLine("Сгенерированный массив случайных чисел размером, заданным введенным числом: ");
             PrintArray(unsortedNumbersArray);
@@ -35,7 +32,6 @@ namespace HomeWork2
             Console.ReadLine();
         }
 
-        //
         static bool TryEnterNumberFromConsole(out uint number)
         {
             Console.Write("Введите целое число: ");
@@ -61,7 +57,6 @@ namespace HomeWork2
             }
             return numbersArray;
         }
-        //
 
         static void PrintArray(int[] array)
         {
@@ -71,35 +66,10 @@ namespace HomeWork2
             }
         }
 
-
-        /*
-        static int getNumberFromUser()
-        {
-            Console.Write("Введите целое число, которое больше нуля: ");
-
-            try
-            {
-                if (!((number = Int32.Parse(Console.ReadLine())) > 0))
-                {
-                    number = 0;
-                    throw new Exception("Число должно быть больше нуля!");
-                }
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine(exc.Message);
-            }
-
-            Console.ReadLine();
-        }
-        */
-
-        // Эта сортировка во внутреннем цикле будет идти до определенного элемента (так как последнее число и 'n'[0,1,...,n] чисел до него уже можно не сравнивать)
-        //static int[] BubbleSort(int[] numbersArray, out int[] sortNumbersArray)
+        // Сортировка массива алгоритмом пузырьковой сортировки
+        // Будет идти до определенного элемента (так как последнее число и 'n'[0,1,...,n] чисел до него уже можно не сравнивать)
         static int[] BubbleSortOfArray(int[] numbersArray)
         {
-
-            // Пример: { 9, 7, 5, 4, 2, 1 } - массив из 6-ти элементов
             for (int i = 0; i < numbersArray.Length - 1; i++)
             {
                 for (int j = 0; j < numbersArray.Length - i - 1; j++)
