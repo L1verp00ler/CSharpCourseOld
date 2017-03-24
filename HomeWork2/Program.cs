@@ -13,6 +13,11 @@ namespace HomeWork2
             {
                 Console.Read();
                 return;
+            } else if (number == 0)
+            {
+                Console.WriteLine("Число должно быть больше нуля!");
+                Console.Read();
+                return;
             }
             //
 
