@@ -7,8 +7,8 @@ namespace HomeWork2
         static void Main(string[] args)
         {
             int number;
-            Console.Write("Введите число: ");
-            if (!((number = Int32.Parse(Console.ReadLine())) > 0))
+
+            if (!(number = getNumberFromUser()))
             {
                 Console.WriteLine("Число должно быть больше нуля!");
                 Console.ReadLine();
@@ -35,6 +35,26 @@ namespace HomeWork2
             }
 
             //Console.WriteLine("123");
+            Console.ReadLine();
+        }
+
+        static int getNumberFromUser()
+        {
+            Console.Write("Введите целое число, которое больше нуля: ");
+
+            try
+            {
+                if (!((number = Int32.Parse(Console.ReadLine())) > 0))
+                {
+                    number = 0;
+                    throw new Exception("Число должно быть больше нуля!");
+                }
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+
             Console.ReadLine();
         }
 
@@ -101,40 +121,5 @@ namespace HomeWork2
             ///int[] array = { 1, 2, 3 };
             return numbersArray;
         }
-
-
-        /*
-        // Эта сортировка во внутреннем цикле будет всегда идти по всем элементам (а это лишние бесполезные проверки)
-        static int[] BubbleSort(int[] numbersArray, out int[] sortNumbersArray)
-        {
-
-            // { 7, 5, 6, 3, 1, 4 } - массив из 6-ти элементов
-            for (int i = 0; i < numbersArray.Length - 1; i++)
-            {
-                //for (int j = 0; numbersArray.Length - j > 0 ; j++)
-                for (int j = 0; j < numbersArray.Length - 1; j++) // numbersArray.Length = 6, т.е. j < 5
-                {
-                    if (numbersArray[j] > numbersArray[j + 1])
-                    {
-                        int tempElem = numbersArray[j + 1];
-                        numbersArray[j + 1] = numbersArray[j];
-                        numbersArray[j] = tempElem;
-                    }
-                }
-            }
-
-            // 0 - 7,5,6,3,1,4 j=0
-            // 1 - 5,7,6,3,1,4 j=1
-            // 2 - 5,6,7,3,1,4 j=2
-            // 3 - 5,6,3,7,1,4 j=3
-            // 4 - 5,6,3,1,7,4 j=4
-            // 5 - 5,6,3,1,4,7 j=5
-
-
-
-            int[] array = { 1, 2, 3 };
-            return array;
-        }
-        */
     }
 }
